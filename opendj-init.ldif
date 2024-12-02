@@ -1,0 +1,23 @@
+dn: ou=Groups,dc=example,dc=com
+objectClass: organizationalUnit
+ou: Groups
+
+dn: cn=admin,ou=Groups,dc=example,dc=com
+objectClass: groupOfUniqueNames
+cn: admin
+uniqueMember: cn=Directory Manager,dc=example,dc=com
+
+dn: cn=contractor,ou=Groups,dc=example,dc=com
+objectClass: groupOfUniqueNames
+cn: contractor
+uniqueMember: cn=Directory Manager,dc=example,dc=com
+
+dn: cn=developer,ou=Groups,dc=example,dc=com
+objectClass: groupOfUniqueNames
+cn: developer
+uniqueMember: cn=Directory Manager,dc=example,dc=com
+
+dn: cn=customer service representative,ou=Groups,dc=example,dc=com
+objectClass: groupOfUniqueNames
+cn: customer service representative
+uniqueMember: cn=Directory Manager,dc=example,dc=com

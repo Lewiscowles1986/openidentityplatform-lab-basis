@@ -10,9 +10,11 @@ services:
       - REPLICATION_PORT=8989
     ports:
       - "1389:1389"
+      - "1636:1636"
       - "4444:4444"
     volumes:
       - opendj-data:/opt/opendj/data
+      - ./opendj-init.ldif:/opt/opendj/bootstrap/data/opendj-init.ldif:ro
     restart: always
 
   openam:
