@@ -35,6 +35,11 @@ services:
       - "8080:8080"
     volumes:
       - openam-data:/opt/openam
+      - ./config.properties:/usr/openam/config/config.properties:ro
+      - ./openam-init.sh:/usr/local/tomcat/bin/openam-init.sh:ro
+    command: |
+      bash /usr/local/tomcat/bin/openam-init.sh
+      /usr/local/tomcat/bin/catalina.sh run
     restart: always
 
   openig:
