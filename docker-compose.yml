@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   opendj:
-    image: forgerock/opendj:latest
+    image: openidentityplatform/opendj:latest
     container_name: opendj
     environment:
       - BASE_DN=dc=example,dc=com
@@ -16,7 +16,7 @@ services:
     restart: always
 
   openam:
-    image: forgerock/openam:latest
+    image: openidentityplatform/openam:latest
     container_name: openam
     depends_on:
       - opendj
@@ -36,7 +36,7 @@ services:
     restart: always
 
   openig:
-    image: forgerock/openig:latest
+    image: openidentityplatform/openig:latest
     container_name: openig
     depends_on:
       - openam
