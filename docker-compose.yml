@@ -42,7 +42,7 @@ services:
       - openam
     environment:
       - AM_URL=http://openam:8080/openam
-      - IG_CONFIG=http://openig:8080/config
+      - IG_CONFIG=http://openig:8081/config
     ports:
       - "8081:8081"
     volumes:
