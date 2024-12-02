@@ -1,0 +1,55 @@
+version: '3.8'
+services:
+  opendj:
+    image: forgerock/opendj:latest
+    container_name: opendj
+    environment:
+      - BASE_DN=dc=example,dc=com
+      - LDAP_PORT=1389
+      - ROOT_PASSWORD=admin_password
+      - REPLICATION_PORT=8989
+    ports:
+      - "1389:1389"
+      - "4444:4444"
+    volumes:
+      - opendj-data:/opt/opendj/data
+    restart: always
+
+  openam:
+    image: forgerock/openam:latest
+    container_name: openam
+    depends_on:
+      - opendj
+    environment:
+      - DS_DIRECTORY_MANAGER_PWD=admin_password
+      - AMLDAPUSERPASS=amadmin_password
+      - AM_URL=http://openam:8080/openam
+      - USERSTORE_LDAP_HOST=opendj
+      - USERSTORE_LDAP_PORT=1389
+      - USERSTORE_BIND_DN=cn=Directory Manager
+      - USERSTORE_BIND_PWD=admin_password
+      - USERSTORE_BASE_DN=dc=example,dc=com
+    ports:
+      - "8080:8080"
+    volumes:
+      - openam-data:/opt/openam
+    restart: always
+
+  openig:
+    image: forgerock/openig:latest
+    container_name: openig
+    depends_on:
+      - openam
+    environment:
+      - AM_URL=http://openam:8080/openam
+      - IG_CONFIG=http://openig:8080/config
+    ports:
+      - "8081:8081"
+    volumes:
+      - openig-data:/opt/openig
+    restart: always
+
+volumes:
+  opendj-data:
+  openam-data:
+  openig-data:
