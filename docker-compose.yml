@@ -34,7 +34,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - openam-data:/opt/openam
+      - openam-data:/usr/openam/config
       - ./config.properties:/usr/openam/config/config.properties:ro
       - ./openam-init.sh:/usr/local/tomcat/bin/openam-init.sh:ro
     command: |
